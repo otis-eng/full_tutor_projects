@@ -11,7 +11,7 @@ router.get('/getAllCourse',courseController.getALlCourse);
 router.get('/getCourse/:id',courseController.getCourseWithId);
 
 
-router.post('/deleteCourse/:id',courseController.deleteCourse);
+router.delete('/deleteCourse/:id',courseController.deleteCourse);
 
 router.get('/getCourseWithStudent/:idStudent',courseController.getCourseWithStudent)
 
