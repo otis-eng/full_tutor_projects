@@ -2,6 +2,7 @@
 const { course } = require('../models');
 const db = require('../models')
 const Request = db.request;
+const Course = db.course;
 
 
 const addRequest = async (req,res) =>{
@@ -86,11 +87,33 @@ const acceptRequest = async (req,res) =>{
     try{
         const id = req.params.id;
         const request = await Request.findByPk(id);
-        request.update({status:"true"}).then((result) =>{
-            res.status(200).send({success:true,mesage:result})
-        }).catch(err =>{
-            return res.status(400).send({message:err.message});
-        });
+        if(request != null){
+            const response =   request.update({status:"true"})
+            console.log(response);
+            try{
+            const course = await Course.findByPk(request.course);
+
+
+            course.update({
+                "student":request.student
+            }).then((result) => {
+                return res.status(200).send(true);
+            }).catch((err) => {
+                return res.status(400).send(false);
+            })
+
+
+
+            }catch(err){
+                return res.status(400).send(false);
+            }
+
+
+        }else{
+            return res.status(400).send(false);
+        }
+
+
         
     }catch(err){
         return res.status(400).send({success:"false", message:err.message});
