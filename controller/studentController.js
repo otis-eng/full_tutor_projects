@@ -4,21 +4,19 @@ const Student = db.students;
 
 
 const registerStudent = async (req,res)=>{
-
-
-    
-    const email = await Student.findOne({where: {email: req.body.email}});
-    if(!email) {
-        const {name,passwords,address} = await req.body;
+    const {email,name,password,address} = await req.body;
+     isUser = await Student.findOne({where: {email: email}});
+    if(!isUser) {
+        
         const items = {
             email: email,
             name:name,
-            password: passwords,
+            password: password,
             address: address
         }
         try{
-            Student.create(items);
-            return res.status(200).send("Create tutor success!");
+            await Student.create(items);
+            return res.status(200).send("Create student success!");
         }catch(err){
             return res.status(400).send({message: err.message});
         }
@@ -37,7 +35,7 @@ const LoginStudenWithUsername = async (req,res)=>{
         console.log("resposne"+ reponse)
         if(reponse){
             
-                return res.status(200).send(true);
+                return res.status(200).send(reponse);
            
             
         }else{
