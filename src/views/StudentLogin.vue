@@ -5,16 +5,16 @@
 			<form class="login">
 				<div class="login__field">
 					<i class="login__icon fas fa-user"></i>
-					<input type="text" class="login__input" placeholder=" Email" v-model="email">
+					<input type="text" class="login__input" placeholder=" Email">
 				</div>
 				<div class="login__field">
 					<i class="login__icon fas fa-lock"></i>
-					<input type="password" class="login__input" placeholder="Password" v-model="password">
+					<input type="password" class="login__input" placeholder="Password">
 				</div>
-				<button class="button login__submit"   v-on:click="handleLogin">
+				<button class="button login__submit">
 					<span class="button__text">Log In Now</span>
 					<i class="button__icon fas fa-chevron-right"></i>
-				</button>					 
+				</button>							
 			</form>
 
 		</div>
@@ -28,41 +28,9 @@
 </div>
 </template>
 <script>
-import axios from "axios";
 export default {
-    name:'StudentLogin',
-    data(){
-      return {
-          email :'',
-  password :'',
-  isLogin : false
-      }
-
-},
-methods:{
- async  handleLogin(){
-  //  console.log("this is test");
-   alert(this.email);
-    const body = {
-      "email":this.email,
-      "password":this.password
-    }
-  const response =  await axios.post(
-      "https://f7tutor.herokuapp.com/student/login",
-     body
-    )
-    if(response.statusCode == 200){
-      this.isLogin = true
-    }
-    if(this.isLogin == true){
-      alert("Login succes");
-    }else{
-       alert("Login Not sucess");
-    }
-  }
+    name:'AdminLogin'
 }
-}
-
 </script>
 <style lang="scss">
 @import url('https://fonts.googleapis.com/css?family=Raleway:400,700');

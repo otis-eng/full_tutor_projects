@@ -5,8 +5,8 @@ const Home = () => import('@/views/Home.vue');
 const Products = () => import('@/views/Products.vue');
 const Contact = () => import('@/views/Contact.vue');
 const Info = () => import('@/views/Info.vue');
-const Login  = () => import('./views/AdminLogin.vue');
-const AdminLogin  = () => import('./views/StudentLogin.vue');
+const Login  = () => import('./views/StudentLogin.vue');
+const AdminLogin  = () => import('./views/AdminLogins.vue');
 const Register  = () => import('./views/RegisterStudent.vue');
 Vue.use(Router)
 

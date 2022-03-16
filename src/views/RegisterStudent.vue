@@ -3,11 +3,11 @@
 	<div class="screen">
 		<div class="screen__content">
 			<form class="login">
-                				<div class="login__field">
+        <div class="login__field">
 					<i class="login__icon fas fa-user"></i>
 					<input type="text" class="login__input" placeholder=" Name">
 				</div>
-                				<div class="login__field">
+        <div class="login__field">
 					<i class="login__icon fas fa-user"></i>
 					<input type="text" class="login__input" placeholder=" Phone Number">
 				</div>
@@ -19,7 +19,7 @@
 					<i class="login__icon fas fa-lock"></i>
 					<input type="password" class="login__input" placeholder="Password">
 				</div>		
-        	    <button class="button login__submit">
+        <button class="button login__submit">
 					<span class="button__text">Register</span>
 					<i class="button__icon fas fa-chevron-right"></i>
 				</button>					
