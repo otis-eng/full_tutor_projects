@@ -30,7 +30,7 @@
 <script>
 import axios from "axios";
 export default {
-    name:'StudentLogin',
+    name:'AdminLogin',
     data(){
       return {
           email :'',
@@ -43,27 +43,41 @@ methods:{
  async  handleLogin(){
    
    /* eslint-disable */ 
-    console.log("this is test");
-   alert(this.email);
-    const body = {
+    console.log(this.isLogin);
+   
+   if(this.email.length > 5){
+     if(this.password.length > 0){
+           const body = {
       "email":this.email,
       "password":this.password
+
+      
     }
-  const response =  await axios.post(
-      "https://f7tutor.herokuapp.com/student/login",
+    await axios.post(
+      "http://homepagetutor.cleverapps.io/admin/login",
      body
-    )
-    if(response.statusCode == 200){
+    ).then((response) => {
       this.isLogin = true
-    }
-    if(this.isLogin == true){
-      alert("Login succes");
-    }else{
-       alert("Login Not sucess");
-    }
-  }
+      }).catch((err) => this.isLogin = false);
+      /* eslint-disable */ 
+      console.log(this.isLogin);
+      if(this.isLogin == true){
+       this.$router.push({
+         name:'Tutor',
+         params: this.email
+       })
+      }else{
+        alert("Login Not sucess");
+      }
+  
+     }else{
+       alert("Password can't null");
+     }
+   }else{
+     alert("Email can't null");
+   }
 }
-}
+}}
 
 </script>
 <style lang="scss">

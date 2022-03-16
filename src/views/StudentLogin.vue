@@ -2,19 +2,25 @@
 <div class="container">
 	<div class="screen">
 		<div class="screen__content">
-			<form class="login">
+			<form class="login" v-on:submit.prevent>
 				<div class="login__field">
 					<i class="login__icon fas fa-user"></i>
-					<input type="text" class="login__input" placeholder=" Email">
+					<input type="text" class="login__input" v-model="email" placeholder=" Email">
 				</div>
 				<div class="login__field">
 					<i class="login__icon fas fa-lock"></i>
-					<input type="password" class="login__input" placeholder="Password">
+					<input type="password" class="login__input"  v-model="password" placeholder="Password">
 				</div>
-				<button class="button login__submit">
+				<button class="button login__submit" @click="handleLogin">
 					<span class="button__text">Log In Now</span>
 					<i class="button__icon fas fa-chevron-right"></i>
-				</button>							
+				</button>				
+        <button class="button login__submit" >
+					<router-link to="/register">
+          <span class="button__text">Register</span>
+          </router-link>
+					<i class="button__icon fas fa-chevron-right"></i>
+				</button>						
 			</form>
 
 		</div>
@@ -28,8 +34,58 @@
 </div>
 </template>
 <script>
+import axios from "axios";
 export default {
-    name:'AdminLogin'
+    name:'StudentLogin',
+        data(){
+      return {
+          email :'',
+          password :'',
+          isLogin : false,
+          user:null,
+      }
+
+},
+methods:{
+ async  handleLogin(){
+   
+   /* eslint-disable */ 
+    console.log(this.email);
+   
+   if(this.email.length > 0){
+     if(this.password.length > 0){
+           const body = {
+      "email":this.email,
+      "password":this.password
+
+      
+    }
+    await axios.post(
+     "http://homepagetutor.cleverapps.io/student/login",
+     body
+    ).then((response) => {
+      this.isLogin = true,
+      this.user = response.data
+      }).catch((err) => this.isLogin = true);
+      /* eslint-disable */ 
+      console.log(this.isLogin);
+      if(this.isLogin == true){
+       this.$router.push({
+         name:'Course',
+         params: this.user
+       })
+      }else{
+        alert("Login Not sucess");
+      }
+  
+     }else{
+       alert("Password can't null");
+     }
+   }else{
+     alert("Email can't null");
+   }
+}
+}
 }
 </script>
 <style lang="scss">

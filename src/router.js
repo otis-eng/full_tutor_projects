@@ -8,6 +8,9 @@ const Info = () => import('@/views/Info.vue');
 const Login  = () => import('./views/StudentLogin.vue');
 const AdminLogin  = () => import('./views/AdminLogins.vue');
 const Register  = () => import('./views/RegisterStudent.vue');
+const Tutor = () => import('./views/Tutor.vue');
+const Course = () => import('./views/Course.vue');
+
 Vue.use(Router)
 
 export default new Router({
@@ -45,6 +48,21 @@ export default new Router({
       path: '/admin',
       name: 'AdminLogin',
       component: AdminLogin
+    },
+    {
+      path: '/tutor',
+      name: 'Tutor',
+      component: Tutor
+    }, 
+    {
+      path: '/tutor',
+      name: 'Tutor',
+      component: Tutor
+    },
+    {
+      path: '/course',
+      name: 'Course',
+      component: Course
     },
   ],
   mode: 'history'
