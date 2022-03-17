@@ -3,6 +3,7 @@
 	<div class="screen">
 		<div class="screen__content">
 			<form class="login" v-on:submit.prevent>
+        <h2 style="font-family: 'Acme', sans-serif;">REGISTER </h2>
         <div class="login__field">
 					<i class="login__icon fas fa-user"></i>
 					<input type="text" class="login__input" v-model="name" placeholder=" Name">
@@ -66,6 +67,7 @@ export default {
 }
 </script>
 <style lang="scss">
+@import url('https://fonts.googleapis.com/css2?family=Acme&display=swap');
 @import url('https://fonts.googleapis.com/css?family=Raleway:400,700');
 
 * {
