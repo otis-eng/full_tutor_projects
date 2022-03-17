@@ -1,7 +1,7 @@
 <template lang="">
     <div v-if="isLoading == false">
         <div v-for="item in list">
-            <CardProfile v-bind:item="item"/>  
+            <CardTutor v-bind:item="item"/>  
         </div>
     </div>
     <div v-else>
@@ -11,11 +11,11 @@
 </template>
 <script>
 import axios from "axios";
-import CardProfile from "../Components/TutorPage/CardProfile.vue"
+import CardTutor from "../Components/TutorPage/CardProfile.vue"
 export default {
     name:"Tutor",
     components:{
-        CardProfile
+        CardTutor
     },
     data(){
         return{

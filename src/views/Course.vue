@@ -1,7 +1,7 @@
 <template lang="">
     <div v-if="isLoading == false">
         <div v-for="item in List">
-            <CardCourse v-bind:item="item"/>  
+            <CardCourse v-bind:item="item" v-bind="user"/>  
         </div>
     </div>
     <div v-else>
@@ -13,7 +13,7 @@
 import axios from "axios";
 import CardCourse from "../Components/CardCourse"
 export default {
-    name:"  ",
+    name:"Course",
     components:{
         CardCourse
     },
@@ -21,10 +21,11 @@ export default {
         return{
             List:null,
             isLoading:false,
+            user:this.$route.params.user
         }
     },
     async mounted() {
-        await axios.get("http://homepagetutor.cleverapps.io/course/getAllCourse").then((response) =>this.list = response.data).catch(() =>{this.isLoading=true;})
+        await axios.get("http://homepagetutor.cleverapps.io/course/getAllCourse").then((response) =>this.List = response.data).catch(() =>{this.isLoading=true;})
     },
 }
 </script>

@@ -1,6 +1,6 @@
 <template lang="">
-    <div>
-          <div class="card">
+  <div>
+    <div class="card">
     <img src="https://res.cloudinary.com/phankieuphuicloud/image/upload/v1625397788/imgAvatar/27a62b61138de7d3be9c4_yjaec4.jpg"   width="200" height="200" >
     <p class="card__name">{{item.name}}</p>
     <div class="grid-container">
@@ -20,7 +20,7 @@
       <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
       <li><a href="#"><i class="fa fa-codepen"></i></a></li>
     </ul>
-    <button type="submit" class="btn draw-border" @click="acceptTutor">Đăng Ký</button>
+    <button  type="submit" class="btn draw-border" @click="registerCourse">Đăng Ký</button>
     
   </div>
     </div>
@@ -31,12 +31,19 @@ export default {
     name:"CardCourse",
 
     props:{
-      item:Object
+      item:Object,
+      user:String
     },
     methods: {
-      async acceptTutor(){
-        await axios.put(`http://homepagetutor.cleverapps.io/tutor/acceptTutor/${this.item.id}`).then(()=>alert("Accept success")).catch(() => alert("Accept not success"));
+      async registerCourse(){
+        const body ={
+          "author":this.item.author,
+          "student":this.user,
+          "course":this.item.id,
+        }
+        await axios.post("http://homepagetutor.cleverapps.io/request/createRequest",body).then(()=>alert("Dang ky thanh cong")).catch((err)=>alert(err.message));
       }
+    
     }
 }
 </script>

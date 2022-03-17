@@ -55,11 +55,6 @@ export default new Router({
       component: Tutor
     }, 
     {
-      path: '/tutor',
-      name: 'Tutor',
-      component: Tutor
-    },
-    {
       path: '/course',
       name: 'Course',
       component: Course
