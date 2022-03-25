@@ -59,11 +59,24 @@ const getDetailLession = async (req,res) =>{
 
 }
 
+const getLessionWithStudent = async (req,res) =>{
+    try{
+        const student = req.params.student;
+        const response =  await Lession.findAll({
+            where:{student: student}
+        })
+        return res.status(200).send(response);
+    }catch(err){
+        return res.status(400).send({mesage: err.message})
+    }
+}
+
 
 module.exports = {
 
 
     getDetailLession,
     getAllLession,
-    addLession
+    addLession,
+    getLessionWithStudent
 }
